@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TBannerMapper">
+  <resultMap id="BaseResultMap" type="com.ys.mapservice.domain.entity.TBanner">
+    <!--@mbg.generated-->
+    <id column="banner_id" jdbcType="INTEGER" property="bannerId" />
+    <result column="banner_title" jdbcType="VARCHAR" property="bannerTitle" />
+    <result column="banner_img" jdbcType="VARCHAR" property="bannerImg" />
+    <result column="banner_url" jdbcType="VARCHAR" property="bannerUrl" />
+    <result column="cate_time" jdbcType="TIMESTAMP" property="cateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    banner_id, banner_title, banner_img, banner_url, cate_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_banner
+    where banner_id = #{bannerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_banner
+    where banner_id = #{bannerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="banner_id" keyProperty="bannerId" parameterType="com.ys.mapservice.domain.entity.TBanner" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_banner (banner_title, banner_img, banner_url, 
+      cate_time)
+    values (#{bannerTitle,jdbcType=VARCHAR}, #{bannerImg,jdbcType=VARCHAR}, #{bannerUrl,jdbcType=VARCHAR}, 
+      #{cateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="banner_id" keyProperty="bannerId" parameterType="com.ys.mapservice.domain.entity.TBanner" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_banner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bannerTitle != null">
+        banner_title,
+      </if>
+      <if test="bannerImg != null">
+        banner_img,
+      </if>
+      <if test="bannerUrl != null">
+        banner_url,
+      </if>
+      <if test="cateTime != null">
+        cate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bannerTitle != null">
+        #{bannerTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImg != null">
+        #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerUrl != null">
+        #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cateTime != null">
+        #{cateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ys.mapservice.domain.entity.TBanner">
+    <!--@mbg.generated-->
+    update t_banner
+    <set>
+      <if test="bannerTitle != null">
+        banner_title = #{bannerTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImg != null">
+        banner_img = #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerUrl != null">
+        banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cateTime != null">
+        cate_time = #{cateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where banner_id = #{bannerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ys.mapservice.domain.entity.TBanner">
+    <!--@mbg.generated-->
+    update t_banner
+    set banner_title = #{bannerTitle,jdbcType=VARCHAR},
+      banner_img = #{bannerImg,jdbcType=VARCHAR},
+      banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      cate_time = #{cateTime,jdbcType=TIMESTAMP}
+    where banner_id = #{bannerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TCarMapper">
+  <resultMap id="BaseResultMap" type="com.ys.mapservice.domain.entity.TCar">
+    <!--@mbg.generated-->
+    <id column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="serve_id" jdbcType="INTEGER" property="serveId" />
+    <result column="car_num" jdbcType="INTEGER" property="carNum" />
+    <result column="crate_time" jdbcType="TIMESTAMP" property="crateTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="car_status" jdbcType="TINYINT" property="carStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    car_id, u_id, serve_id, car_num, crate_time, update_time, car_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_car
+    where car_id = #{carId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_car
+    where car_id = #{carId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="car_id" keyProperty="carId" parameterType="com.ys.mapservice.domain.entity.TCar" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_car (u_id, serve_id, car_num, 
+      crate_time, update_time, car_status
+      )
+    values (#{uId,jdbcType=INTEGER}, #{serveId,jdbcType=INTEGER}, #{carNum,jdbcType=INTEGER}, 
+      #{crateTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{carStatus,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="car_id" keyProperty="carId" parameterType="com.ys.mapservice.domain.entity.TCar" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="serveId != null">
+        serve_id,
+      </if>
+      <if test="carNum != null">
+        car_num,
+      </if>
+      <if test="crateTime != null">
+        crate_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="carStatus != null">
+        car_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="serveId != null">
+        #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="carNum != null">
+        #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="crateTime != null">
+        #{crateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carStatus != null">
+        #{carStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ys.mapservice.domain.entity.TCar">
+    <!--@mbg.generated-->
+    update t_car
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="serveId != null">
+        serve_id = #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="carNum != null">
+        car_num = #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="crateTime != null">
+        crate_time = #{crateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carStatus != null">
+        car_status = #{carStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ys.mapservice.domain.entity.TCar">
+    <!--@mbg.generated-->
+    update t_car
+    set u_id = #{uId,jdbcType=INTEGER},
+      serve_id = #{serveId,jdbcType=INTEGER},
+      car_num = #{carNum,jdbcType=INTEGER},
+      crate_time = #{crateTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      car_status = #{carStatus,jdbcType=TINYINT}
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TPropertyMapper">
+  <resultMap id="TPropertyResultMap" type="com.ys.mapservice.domain.vo.TPropertyVo">
+    <id column="property_id" jdbcType="INTEGER" property="propertyId" />
+    <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
+    <association property="TPropertyValue" javaType="com.ys.mapservice.domain.entity.TPropertyValue"
+    resultMap="com.ys.mapservice.mapper.TPropertyValueMapper.TPropertyValueResultMap">
+    </association>
+  </resultMap>
+</mapper>

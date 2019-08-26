@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TTimelineMapper">
+  <resultMap id="BaseResultMap" type="com.ys.mapservice.domain.entity.TTimeline">
+    <!--@mbg.generated-->
+    <id column="time_id" jdbcType="INTEGER" property="timeId" />
+    <result column="time_start" jdbcType="TIMESTAMP" property="timeStart" />
+    <result column="serve_id" jdbcType="INTEGER" property="serveId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    time_id, time_start, serve_id, u_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_timeline
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_timeline
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="time_id" keyProperty="timeId" parameterType="com.ys.mapservice.domain.entity.TTimeline" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_timeline (time_start, serve_id, u_id
+      )
+    values (#{timeStart,jdbcType=TIMESTAMP}, #{serveId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="time_id" keyProperty="timeId" parameterType="com.ys.mapservice.domain.entity.TTimeline" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_timeline
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeStart != null">
+        time_start,
+      </if>
+      <if test="serveId != null">
+        serve_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeStart != null">
+        #{timeStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serveId != null">
+        #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ys.mapservice.domain.entity.TTimeline">
+    <!--@mbg.generated-->
+    update t_timeline
+    <set>
+      <if test="timeStart != null">
+        time_start = #{timeStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serveId != null">
+        serve_id = #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ys.mapservice.domain.entity.TTimeline">
+    <!--@mbg.generated-->
+    update t_timeline
+    set time_start = #{timeStart,jdbcType=TIMESTAMP},
+      serve_id = #{serveId,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER}
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </update>
+</mapper>

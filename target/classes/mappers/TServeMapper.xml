@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TServeMapper">
+  <resultMap id="TServeResultMap" type="com.ys.mapservice.domain.vo.TServeVo">
+    <id column="serve_id" jdbcType="INTEGER" property="serveId" />
+    <result column="serve_name" jdbcType="VARCHAR" property="serveName" />
+    <result column="serve_price" jdbcType="DECIMAL" property="servePrice" />
+    <result column="serve_title" jdbcType="VARCHAR" property="serveTitle" />
+    <result column="crate_time" jdbcType="TIMESTAMP" property="crateTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="serve_status" jdbcType="TINYINT" property="serveStatus" />
+    <collection property="TPropertyValueList" ofType="com.ys.mapservice.domain.vo.TPropertyVo"
+    resultMap="com.ys.mapservice.mapper.TPropertyMapper.TPropertyResultMap"
+    column="serve_id">
+    </collection>
+  </resultMap>
+  <select id="findAll" resultMap="TServeResultMap">
+    SELECT s.serve_id,s.serve_name, s.serve_price,s.serve_title,tp.property_id,tp.property_name,tpv.property_value_id,tpv.property_value_dec
+    FROM t_serve s
+    LEFT JOIN t_property tp on s.serve_id = tp.serve_id
+    LEFT JOIN t_property_value tpv on tp.property_id = tpv.property_id
+    WHERE serve_status=0
+  </select>
+
+
+</mapper>

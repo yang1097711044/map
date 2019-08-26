@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapservice.mapper.TCaseMapper">
+  <resultMap id="BaseResultMap" type="com.ys.mapservice.domain.entity.TCase">
+    <!--@mbg.generated-->
+    <id column="case_id" jdbcType="INTEGER" property="caseId" />
+    <result column="case_title" jdbcType="VARCHAR" property="caseTitle" />
+    <result column="serve_id" jdbcType="INTEGER" property="serveId" />
+    <result column="case_dec" jdbcType="VARCHAR" property="caseDec" />
+    <result column="crate_time" jdbcType="TIMESTAMP" property="crateTime" />
+    <result column="crate_status" jdbcType="TINYINT" property="crateStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    case_id, case_title, serve_id, case_dec, crate_time, crate_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_case
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_case
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="case_id" keyProperty="caseId" parameterType="com.ys.mapservice.domain.entity.TCase" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_case (case_title, serve_id, case_dec, 
+      crate_time, crate_status)
+    values (#{caseTitle,jdbcType=VARCHAR}, #{serveId,jdbcType=INTEGER}, #{caseDec,jdbcType=VARCHAR}, 
+      #{crateTime,jdbcType=TIMESTAMP}, #{crateStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="case_id" keyProperty="caseId" parameterType="com.ys.mapservice.domain.entity.TCase" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseTitle != null">
+        case_title,
+      </if>
+      <if test="serveId != null">
+        serve_id,
+      </if>
+      <if test="caseDec != null">
+        case_dec,
+      </if>
+      <if test="crateTime != null">
+        crate_time,
+      </if>
+      <if test="crateStatus != null">
+        crate_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseTitle != null">
+        #{caseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serveId != null">
+        #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="caseDec != null">
+        #{caseDec,jdbcType=VARCHAR},
+      </if>
+      <if test="crateTime != null">
+        #{crateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crateStatus != null">
+        #{crateStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ys.mapservice.domain.entity.TCase">
+    <!--@mbg.generated-->
+    update t_case
+    <set>
+      <if test="caseTitle != null">
+        case_title = #{caseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serveId != null">
+        serve_id = #{serveId,jdbcType=INTEGER},
+      </if>
+      <if test="caseDec != null">
+        case_dec = #{caseDec,jdbcType=VARCHAR},
+      </if>
+      <if test="crateTime != null">
+        crate_time = #{crateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crateStatus != null">
+        crate_status = #{crateStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ys.mapservice.domain.entity.TCase">
+    <!--@mbg.generated-->
+    update t_case
+    set case_title = #{caseTitle,jdbcType=VARCHAR},
+      serve_id = #{serveId,jdbcType=INTEGER},
+      case_dec = #{caseDec,jdbcType=VARCHAR},
+      crate_time = #{crateTime,jdbcType=TIMESTAMP},
+      crate_status = #{crateStatus,jdbcType=TINYINT}
+    where case_id = #{caseId,jdbcType=INTEGER}
+  </update>
+</mapper>
